@@ -27,18 +27,21 @@ public class UsuarioController {
         List<Usuario> usuarios = new ArrayList<>();
         Usuario usuario1 = new Usuario();
         usuario1.setNombre("Marta");
+        usuario1.setId(1L);
         usuario1.setApellido("Esteban");
         usuario1.setEmail("esteban@gmail.com");
         usuario1.setTelefono("87585896");
 
         Usuario usuario2 = new Usuario();
         usuario2.setNombre("Ezequiel");
+        usuario1.setId(2L);
         usuario2.setApellido("fuck");
         usuario2.setEmail("fuck@gmail.com");
         usuario2.setTelefono("56569696");
 
         Usuario usuario3 = new Usuario();
         usuario3.setNombre("Arturo");
+        usuario1.setId(3L);
         usuario3.setApellido("Loy");
         usuario3.setEmail("loy@gmail.com");
         usuario3.setTelefono("56989696");
