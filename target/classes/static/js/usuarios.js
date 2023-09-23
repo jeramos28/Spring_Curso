@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 async function cargarUsuarios(){
 
-    const request = await fetch('usuarios',{
+    const request = await fetch('api/usuarios',{
       method: 'GET',
           headers:{
         'Accept': 'application/json',
@@ -15,11 +15,30 @@ async function cargarUsuarios(){
 });
   const usuarios = await request.json();
 
-  let listadohtml = '';
+
+    let listadohtml = '';
   for (let usuario of usuarios){
-      let usuariohtml = '<tr> <td>'+ usuario.nombre +'</td> <td>'+ usuario.apellido +'</td> <td>'+ usuario.email +'</td> <td><a href="#" class="btn btn-danger btclassNamecle btn-sm"> <i class="fas fa-trash"></iclassName </a></td> </tr>'
+      let botonEliminar = '<a href="#" onclick="eliminarUsuario('+ usuario.id +')" class="btn btn-danger btclassNameNamecle btn-sm"> <i class="fas fa-trash"></iclassNameName </a>';
+      let telefono = usuario.telefono == null ? '-' : usuario.telefono;
+      let usuariohtml = '<tr> <td>'+ usuario.id +'</td><td>'+ usuario.nombre +'</td> <td>'+ usuario.apellido +'</td> <td>'+ usuario.email +'</td> <td>'+ telefono +'</td> <td>'+ botonEliminar +'</td> </tr>'
       listadohtml += usuariohtml;
   }
 
 document.querySelector('#usuarios tbody').outerHTML= listadohtml;
+}
+
+async function eliminarUsuario(id){
+    if(!confirm('Desea eliminar el usuario?')){
+        return;
+    }
+
+    const request = await fetch('api/usuarios/' + id,{
+        method: 'DELETE',
+        headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+
+    location.reload();
 }
